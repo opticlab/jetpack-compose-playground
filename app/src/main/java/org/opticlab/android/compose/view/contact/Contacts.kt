@@ -4,8 +4,11 @@ import androidx.compose.Composable
 import androidx.ui.core.Modifier
 import androidx.ui.foundation.lazy.LazyColumnItems
 import androidx.ui.layout.Column
+import androidx.ui.material.icons.Icons
+import androidx.ui.material.icons.filled.Add
+import androidx.ui.material.icons.filled.Search
+import androidx.ui.material.icons.filled.Settings
 import androidx.ui.tooling.preview.Preview
-import org.opticlab.android.compose.R
 import org.opticlab.android.compose.data.Contact
 import org.opticlab.android.compose.data.sample.sampleContacts
 import org.opticlab.android.compose.ui.KakaoTheme
@@ -20,10 +23,13 @@ fun Contacts(
 ) {
     Column(modifier = modifier) {
         AppBar(title = "친구") {
-            MenuItem(R.drawable.ic_baseline_search_24) {
+            MenuItem(Icons.Default.Search) {
 
             }
-            MenuItem(R.drawable.ic_baseline_settings_24) {
+            MenuItem(Icons.Default.Add) {
+
+            }
+            MenuItem(Icons.Default.Settings) {
 
             }
         }

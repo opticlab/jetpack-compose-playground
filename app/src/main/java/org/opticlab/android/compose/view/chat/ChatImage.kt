@@ -66,9 +66,24 @@ private fun ChatAvatar(avatar: Avatar, modifier: Modifier = Modifier) {
 @Composable
 private fun Preview() {
     KakaoTheme {
-        ChatAvatars(
-            listOf(Avatar.Empty, Avatar.Empty, Avatar.Empty, Avatar.Empty),
-            modifier = Modifier.size(56.dp)
-        )
+        Row {
+            val sizeModifier = Modifier.size(56.dp)
+            ChatAvatars(
+                listOf(Avatar.Empty),
+                modifier = sizeModifier
+            )
+            ChatAvatars(
+                listOf(Avatar.Empty, Avatar.Empty),
+                modifier = sizeModifier
+            )
+            ChatAvatars(
+                listOf(Avatar.Empty, Avatar.Empty, Avatar.Empty),
+                modifier = sizeModifier
+            )
+            ChatAvatars(
+                listOf(Avatar.Empty, Avatar.Empty, Avatar.Empty, Avatar.Empty),
+                modifier = sizeModifier
+            )
+        }
     }
 }

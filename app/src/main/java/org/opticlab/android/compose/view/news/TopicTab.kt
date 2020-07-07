@@ -48,11 +48,11 @@ fun TopicTab(
         onSelected = { onSelectTopic(topic) },
         modifier = modifier.preferredWidthIn(maxWidth = 120.dp)
             .fillMaxHeight()
-            .padding(8.dp)
     ) {
         Text(
             text = title,
-            modifier = Modifier.gravity(Alignment.CenterVertically),
+            modifier = Modifier.gravity(Alignment.CenterVertically)
+                .padding(8.dp),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             fontWeight = if (selected) FontWeight.Bold else null

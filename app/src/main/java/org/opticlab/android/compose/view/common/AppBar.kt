@@ -4,8 +4,9 @@ import androidx.compose.Composable
 import androidx.ui.foundation.Text
 import androidx.ui.layout.RowScope
 import androidx.ui.material.TopAppBar
+import androidx.ui.material.icons.Icons
+import androidx.ui.material.icons.filled.Settings
 import androidx.ui.tooling.preview.Preview
-import org.opticlab.android.compose.R
 import org.opticlab.android.compose.ui.KakaoTheme
 
 @Composable
@@ -21,7 +22,9 @@ fun AppBar(title: String, actions: @Composable() RowScope.() -> Unit = {}) {
 private fun Preview() {
     KakaoTheme {
         AppBar("아몰랑") {
-            MenuItem(icon = R.drawable.ic_baseline_settings_24, onClick = {})
+            MenuItem(icon = Icons.Default.Settings) {
+
+            }
         }
     }
 }

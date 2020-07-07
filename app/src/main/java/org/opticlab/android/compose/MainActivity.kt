@@ -7,6 +7,7 @@ import androidx.ui.core.setContent
 import androidx.ui.tooling.preview.Preview
 import org.opticlab.android.compose.data.sample.sampleChats
 import org.opticlab.android.compose.data.sample.sampleContacts
+import org.opticlab.android.compose.data.sample.sampleRecommendedTags
 import org.opticlab.android.compose.data.sample.sampleTopics
 import org.opticlab.android.compose.ui.KakaoTheme
 import org.opticlab.android.compose.view.home.Home
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             KakaoTheme {
-                Home(sampleContacts, sampleChats, sampleTopics)
+                Home(sampleContacts, sampleChats, sampleTopics, sampleRecommendedTags)
             }
         }
     }
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun LightPreview() {
     KakaoTheme(darkTheme = false) {
-        Home(sampleContacts, sampleChats, sampleTopics)
+        Home(sampleContacts, sampleChats, sampleTopics, sampleRecommendedTags)
     }
 }
 
@@ -34,6 +35,6 @@ fun LightPreview() {
 @Composable
 fun DarkPreview() {
     KakaoTheme(darkTheme = true) {
-        Home(sampleContacts, sampleChats, sampleTopics)
+        Home(sampleContacts, sampleChats, sampleTopics, sampleRecommendedTags)
     }
 }
