@@ -3,6 +3,7 @@ package org.opticlab.android.compose.view.contact
 import androidx.compose.Composable
 import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
+import androidx.ui.core.WithConstraints
 import androidx.ui.foundation.Text
 import androidx.ui.foundation.clickable
 import androidx.ui.layout.*
@@ -19,7 +20,8 @@ import org.opticlab.android.compose.view.chat.ChatAvatars
 fun ContactItem(contact: Contact, onClickContact: (Contact) -> Unit) {
     Row(
         modifier = Modifier
-            .preferredSizeIn(minHeight = 72.dp)
+            .fillMaxWidth()
+            .preferredHeightIn(minHeight = 72.dp)
             .clickable(onClick = { onClickContact(contact) })
             .padding(8.dp),
         verticalGravity = Alignment.CenterVertically
@@ -47,7 +49,13 @@ fun ContactItem(contact: Contact, onClickContact: (Contact) -> Unit) {
 
         if (contact.media != null) {
             Spacer(modifier = Modifier.width(8.dp))
-            ContactMedia(contact.media, modifier = Modifier.preferredSizeIn(maxWidth = 160.dp))
+
+            WithConstraints {
+                ContactMedia(
+                    media = contact.media,
+                    modifier = Modifier.preferredWidthIn(maxWidth = maxWidth / 2)
+                )
+            }
         }
     }
 }

@@ -28,11 +28,12 @@ val sampleWeather = NewsFeed.Weather(
 val sampleFeeds = listOf(
     sampleHeadlines,
     sampleImages,
-    sampleWeather
+    sampleWeather,
+    NewsFeed.Ad(sampleAd)
 )
 val sampleTopics = listOf(
     Topic("코로나19", sampleFeeds),
-    Topic("뉴스", sampleFeeds),
+    Topic("뉴스", sampleFeeds, sampleRecommendedTags),
     Topic("정치", sampleFeeds),
     Topic("사회", sampleFeeds),
     Topic("경제", sampleFeeds),
@@ -42,5 +43,6 @@ val sampleTopics = listOf(
     Topic("티미", sampleFeeds),
     Topic("케이", sampleFeeds),
     Topic("윌슨", sampleFeeds),
-    Topic("민스", sampleFeeds)
+    Topic("민스", sampleFeeds),
+    Topic("구와아아아아악", sampleFeeds)
 )

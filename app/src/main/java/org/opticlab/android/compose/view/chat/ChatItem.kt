@@ -1,7 +1,6 @@
 package org.opticlab.android.compose.view.chat
 
 import androidx.compose.Composable
-import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
 import androidx.ui.foundation.Text
 import androidx.ui.foundation.clickable
@@ -19,44 +18,70 @@ import java.time.temporal.ChronoUnit
 
 @Composable
 fun ChatItem(chat: Chat, onClick: (Chat) -> Unit) {
-    Row(
+    ConstraintLayout(
         modifier = Modifier
-            .preferredSizeIn(minHeight = 72.dp)
+            .fillMaxWidth()
+            .preferredHeightIn(minHeight = 72.dp)
             .clickable(onClick = { onClick(chat) })
-            .padding(8.dp),
-        verticalGravity = Alignment.CenterVertically
+            .padding(8.dp)
     ) {
-        ChatAvatars(chat.avatars, modifier = Modifier.size(56.dp))
-        Spacer(modifier = Modifier.width(8.dp))
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = chat.title,
-                style = MaterialTheme.typography.subtitle1,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = chat.lastMessage,
-                style = MaterialTheme.typography.subtitle2,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
-        }
-        Spacer(modifier = Modifier.width(8.dp))
-        Column {
-            Text(
-                text = chat.updatedAt.formatDateTime(),
-                style = MaterialTheme.typography.caption
-            )
+        val (avatars, title, message, updatedAt, unreadCount) = createRefs()
 
-            val unreadCount = chat.unreadCount
-            if (unreadCount > 0) {
-                Spacer(modifier = Modifier.height(4.dp))
-
-                UnreadCount(unreadCount, modifier = Modifier.gravity(Alignment.End))
+        ChatAvatars(
+            avatars = chat.avatars,
+            modifier = Modifier.size(56.dp)
+                .constrainAs(avatars) {
+                    start.linkTo(parent.start)
+                    centerVerticallyTo(parent)
+                }
+        )
+        Text(
+            text = chat.title,
+            style = MaterialTheme.typography.subtitle1,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.constrainAs(title) {
+                width = Dimension.fillToConstraints
+                start.linkTo(avatars.end, margin = 8.dp)
+                end.linkTo(updatedAt.start, margin = 8.dp)
+                top.linkTo(parent.top)
             }
+        )
+        Text(
+            text = chat.lastMessage,
+            style = MaterialTheme.typography.subtitle2,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.constrainAs(message) {
+                width = Dimension.fillToConstraints
+                start.linkTo(title.start)
+                end.linkTo(title.end)
+                top.linkTo(title.bottom, margin = 4.dp)
+                bottom.linkTo(parent.bottom)
+            }
+        )
+        createVerticalChain(title, message, chainStyle = ChainStyle.Packed)
+        Text(
+            text = chat.updatedAt.formatDateTime(),
+            style = MaterialTheme.typography.caption,
+            modifier = Modifier.constrainAs(updatedAt) {
+                width = Dimension.wrapContent
+                end.linkTo(parent.end)
+                top.linkTo(parent.top)
+                bottom.linkTo(unreadCount.top)
+            }
+        )
+        if (chat.unreadCount > 0) {
+            UnreadCount(
+                count = chat.unreadCount,
+                modifier = Modifier.constrainAs(unreadCount) {
+                    end.linkTo(parent.end)
+                    top.linkTo(updatedAt.bottom, 4.dp)
+                    bottom.linkTo(parent.bottom)
+                }
+            )
         }
+        createVerticalChain(updatedAt, unreadCount, chainStyle = ChainStyle.Packed)
     }
 }
 

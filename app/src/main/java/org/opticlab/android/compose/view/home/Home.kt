@@ -2,16 +2,18 @@ package org.opticlab.android.compose.view.home
 
 import androidx.compose.Composable
 import androidx.ui.core.Modifier
+import androidx.ui.layout.fillMaxSize
 import androidx.ui.layout.padding
 import androidx.ui.material.Scaffold
 import androidx.ui.savedinstancestate.savedInstanceState
 import androidx.ui.tooling.preview.Preview
+import org.opticlab.android.compose.data.Ad
 import org.opticlab.android.compose.data.Chat
 import org.opticlab.android.compose.data.Contact
 import org.opticlab.android.compose.data.Topic
+import org.opticlab.android.compose.data.sample.sampleAd
 import org.opticlab.android.compose.data.sample.sampleChats
 import org.opticlab.android.compose.data.sample.sampleContacts
-import org.opticlab.android.compose.data.sample.sampleRecommendedTags
 import org.opticlab.android.compose.data.sample.sampleTopics
 import org.opticlab.android.compose.ui.KakaoTheme
 import org.opticlab.android.compose.view.chat.Chats
@@ -24,7 +26,7 @@ fun Home(
     contacts: List<Contact>,
     chats: List<Chat>,
     topics: List<Topic>,
-    recommendedTags: List<String>
+    ad: Ad
 ) {
     val (selected, onSelect) = savedInstanceState(inputs = *Tab.values()) { Tab.NEWS }
 
@@ -36,15 +38,15 @@ fun Home(
             )
         }
     ) { innerPadding ->
-        val modifier = Modifier.padding(innerPadding)
+        val modifier = Modifier.padding(innerPadding).fillMaxSize()
 
         when (selected) {
             Tab.CONTACTS -> Contacts(contacts, modifier) {
             }
             Tab.CHAT -> Chats(chats, modifier) {
             }
-            Tab.NEWS -> News(topics, recommendedTags, modifier)
-            Tab.ETC -> Etc(modifier)
+            Tab.NEWS -> News(topics, modifier)
+            Tab.ETC -> Etc(ad, modifier)
         }
     }
 }
@@ -53,6 +55,6 @@ fun Home(
 @Composable
 private fun Preview() {
     KakaoTheme {
-        Home(sampleContacts, sampleChats, sampleTopics, sampleRecommendedTags)
+        Home(sampleContacts, sampleChats, sampleTopics, sampleAd)
     }
 }

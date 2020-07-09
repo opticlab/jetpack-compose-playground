@@ -2,7 +2,10 @@
   <dictionary name="opticlab">
     <words>
       <w>kakao</w>
+      <w>placeable</w>
+      <w>placeables</w>
       <w>pokedex</w>
+      <w>squircle</w>
     </words>
   </dictionary>
 </component>

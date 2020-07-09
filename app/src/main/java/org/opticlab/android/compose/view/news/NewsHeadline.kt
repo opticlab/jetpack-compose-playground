@@ -17,7 +17,11 @@ import org.opticlab.android.compose.data.sample.sampleHeadlines
 import org.opticlab.android.compose.ui.KakaoTheme
 
 @Composable
-fun NewsHeadline(article: NewsArticle, modifier: Modifier = Modifier, onClickArticle: (NewsArticle) -> Unit) {
+fun NewsHeadline(
+    article: NewsArticle,
+    modifier: Modifier = Modifier,
+    onClickArticle: (NewsArticle) -> Unit
+) {
     Row(
         modifier = Modifier.preferredSizeIn(minHeight = 36.dp)
             .fillMaxWidth()

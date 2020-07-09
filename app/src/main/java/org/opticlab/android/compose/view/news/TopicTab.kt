@@ -3,18 +3,17 @@ package org.opticlab.android.compose.view.news
 import androidx.compose.Composable
 import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
+import androidx.ui.foundation.Box
+import androidx.ui.foundation.ContentGravity
 import androidx.ui.foundation.Text
+import androidx.ui.foundation.selection.selectable
 import androidx.ui.layout.RowScope.gravity
 import androidx.ui.layout.fillMaxHeight
 import androidx.ui.layout.padding
 import androidx.ui.layout.preferredHeight
-import androidx.ui.layout.preferredWidthIn
+import androidx.ui.layout.wrapContentWidth
 import androidx.ui.material.MaterialTheme
-import androidx.ui.material.Tab
-import androidx.ui.text.AnnotatedString
-import androidx.ui.text.SpanStyle
 import androidx.ui.text.font.FontWeight
-import androidx.ui.text.style.BaselineShift
 import androidx.ui.text.style.TextOverflow
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
@@ -29,25 +28,18 @@ fun TopicTab(
     onSelectTopic: (Topic) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val title = AnnotatedString.Builder().apply {
-        if (selected) {
-            pushStyle(
-                SpanStyle(
-                    baselineShift = BaselineShift.Superscript,
-                    fontSize = MaterialTheme.typography.body1.fontSize
-                )
-            )
-            append("#")
-            pop()
-        }
-        append(topic.title)
-    }.toAnnotatedString()
+    val title = if (selected) {
+        "#${topic.title}"
+    } else {
+        topic.title
+    }
 
-    Tab(
-        selected = selected,
-        onSelected = { onSelectTopic(topic) },
-        modifier = modifier.preferredWidthIn(maxWidth = 120.dp)
+    Box(
+        modifier = modifier
+            .selectable(selected = selected, onClick = { onSelectTopic(topic) })
             .fillMaxHeight()
+            .wrapContentWidth(),
+        gravity = ContentGravity.Center
     ) {
         Text(
             text = title,
@@ -55,6 +47,7 @@ fun TopicTab(
                 .padding(8.dp),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
+            style = MaterialTheme.typography.h6,
             fontWeight = if (selected) FontWeight.Bold else null
         )
     }
