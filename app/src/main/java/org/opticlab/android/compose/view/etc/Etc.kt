@@ -17,8 +17,10 @@ import org.opticlab.android.compose.view.common.AppBar
 fun Etc(ad: Ad, modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
         AppBar(title = "더보기")
-        Advertisement(ad = ad, modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Advertisement(ad = ad) { ad ->
 
+            }
         }
     }
 }

@@ -13,9 +13,9 @@ import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 
 @Composable
-fun UnreadCount(count: Int, modifier: Modifier = Modifier) {
+fun UnreadCount(count: Int, modifier: Modifier = Modifier, maxVisible: Int = MAX_DISPLAY_COUNT) {
     Text(
-        text = count.formatUnreadCount(),
+        text = count.formatUnreadCount(maxVisible),
         modifier = modifier.preferredSizeIn(minWidth = 16.dp, minHeight = 16.dp)
             .drawBackground(
                 color = MaterialTheme.colors.error,
@@ -31,12 +31,12 @@ fun UnreadCount(count: Int, modifier: Modifier = Modifier) {
     )
 }
 
-private fun Int.formatUnreadCount(): String = when (this) {
-    in 1..MAX_DISPLAY_COUNT -> toString()
-    else -> "${MAX_DISPLAY_COUNT}+"
+private fun Int.formatUnreadCount(maxVisible: Int): String = when (this) {
+    in 1..maxVisible -> toString()
+    else -> "${maxVisible}+"
 }
 
-private const val MAX_DISPLAY_COUNT = 300
+const val MAX_DISPLAY_COUNT = 300
 
 @Preview(name = "Short")
 @Composable
@@ -47,11 +47,11 @@ private fun ShortPreview() {
 @Preview(name = "Long")
 @Composable
 private fun LongPreview() {
-    UnreadCount(count = 300)
+    UnreadCount(count = MAX_DISPLAY_COUNT)
 }
 
 @Preview(name = "Overflow")
 @Composable
 private fun OverflowPreview() {
-    UnreadCount(count = 1000)
+    UnreadCount(count = MAX_DISPLAY_COUNT + 1)
 }
