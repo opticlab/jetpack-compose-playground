@@ -1,24 +1,24 @@
 package org.opticlab.android.compose.view.news
 
-import androidx.compose.Composable
-import androidx.ui.core.Alignment
-import androidx.ui.core.ContentScale
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.Icon
-import androidx.ui.foundation.Image
-import androidx.ui.foundation.Text
-import androidx.ui.foundation.clickable
-import androidx.ui.graphics.ColorFilter
-import androidx.ui.layout.*
-import androidx.ui.material.IconButton
-import androidx.ui.material.MaterialTheme
-import androidx.ui.res.vectorResource
-import androidx.ui.text.AnnotatedString
-import androidx.ui.text.SpanStyle
-import androidx.ui.text.style.BaselineShift
+import androidx.compose.foundation.Icon
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.style.BaselineShift
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.toStringAsFixed
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
-import androidx.ui.util.toStringAsFixed
 import org.opticlab.android.compose.R
 import org.opticlab.android.compose.data.NewsFeed
 import org.opticlab.android.compose.data.sample.sampleWeather
@@ -29,7 +29,8 @@ fun NewsWeather(weather: NewsFeed.Weather, modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier.preferredHeight(56.dp)
             .fillMaxWidth()
-            .clickable(onClick = {}) + modifier
+            .clickable(onClick = {})
+            .then(modifier)
     ) {
         Row(modifier = Modifier.fillMaxHeight()) {
             Image(

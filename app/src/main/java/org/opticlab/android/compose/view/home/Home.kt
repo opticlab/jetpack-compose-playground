@@ -1,11 +1,11 @@
 package org.opticlab.android.compose.view.home
 
-import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.layout.fillMaxSize
-import androidx.ui.layout.padding
-import androidx.ui.material.Scaffold
-import androidx.ui.savedinstancestate.savedInstanceState
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.savedinstancestate.savedInstanceState
+import androidx.compose.ui.Modifier
 import androidx.ui.tooling.preview.Preview
 import org.opticlab.android.compose.data.Ad
 import org.opticlab.android.compose.data.Chat
@@ -28,7 +28,7 @@ fun Home(
     topics: List<Topic>,
     ad: Ad
 ) {
-    val (selected, onSelect) = savedInstanceState(inputs = *Tab.values()) { Tab.NEWS }
+    val (selected, onSelect) = savedInstanceState(inputs = Tab.values()) { Tab.NEWS }
 
     Scaffold(
         bottomBar = {

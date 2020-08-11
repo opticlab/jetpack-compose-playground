@@ -1,12 +1,12 @@
 package org.opticlab.android.compose.view.chat
 
-import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.layout.ExperimentalLayout
-import androidx.ui.layout.FlowRow
-import androidx.ui.layout.size
+import androidx.compose.foundation.layout.ExperimentalLayout
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
 import org.opticlab.android.compose.data.Avatar
 import org.opticlab.android.compose.ui.KakaoTheme
 import org.opticlab.android.compose.view.common.Grid

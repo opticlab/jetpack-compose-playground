@@ -1,6 +1,6 @@
 package org.opticlab.android.compose.ui
 
-import androidx.ui.graphics.Color
+import androidx.compose.ui.graphics.Color
 
 val colorPrimary = Color(0XFFF8DF31)
 val colorPrimaryLight = Color(0XFFFFFF69)

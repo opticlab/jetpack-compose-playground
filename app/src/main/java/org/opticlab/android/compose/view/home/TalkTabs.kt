@@ -1,12 +1,12 @@
 package org.opticlab.android.compose.view.home
 
-import androidx.compose.Composable
-import androidx.ui.foundation.Icon
-import androidx.ui.foundation.shape.corner.CircleShape
-import androidx.ui.material.BottomAppBar
-import androidx.ui.material.BottomNavigation
-import androidx.ui.material.BottomNavigationItem
-import androidx.ui.res.vectorResource
+import androidx.compose.foundation.Icon
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.BottomAppBar
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.vectorResource
 import androidx.ui.tooling.preview.Preview
 import org.opticlab.android.compose.ui.KakaoTheme
 
@@ -23,7 +23,8 @@ fun TalkTabs(
                 BottomNavigationItem(
                     icon = { Icon(asset = vectorResource(id = tab.icon)) },
                     selected = selected == tab,
-                    onSelected = { onTabSelected(tab) })
+                    onSelect = { onTabSelected(tab) }
+                )
             }
         }
     }

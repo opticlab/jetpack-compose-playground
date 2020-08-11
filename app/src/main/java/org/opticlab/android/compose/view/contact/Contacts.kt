@@ -1,13 +1,13 @@
 package org.opticlab.android.compose.view.contact
 
-import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.lazy.LazyColumnItems
-import androidx.ui.layout.Column
-import androidx.ui.material.icons.Icons
-import androidx.ui.material.icons.filled.Add
-import androidx.ui.material.icons.filled.Search
-import androidx.ui.material.icons.filled.Settings
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.ui.tooling.preview.Preview
 import org.opticlab.android.compose.data.Contact
 import org.opticlab.android.compose.data.sample.sampleContacts
@@ -33,7 +33,7 @@ fun Contacts(
 
             }
         }
-        LazyColumnItems(items = contacts) { contact ->
+        LazyColumnFor(items = contacts) { contact ->
             ContactItem(
                 contact = contact,
                 onClickContact = onClickContact

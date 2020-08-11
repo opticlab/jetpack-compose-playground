@@ -1,10 +1,10 @@
 package org.opticlab.android.compose.view.news
 
-import androidx.compose.Composable
-import androidx.ui.layout.ExperimentalLayout
-import androidx.ui.layout.FlowRow
+import androidx.compose.foundation.layout.ExperimentalLayout
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
 import org.opticlab.android.compose.data.sample.sampleRecommendedTags
 import org.opticlab.android.compose.ui.KakaoTheme
 

@@ -1,12 +1,12 @@
 package org.opticlab.android.compose.ui
 
-import androidx.compose.Composable
-import androidx.ui.foundation.isSystemInDarkTheme
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.darkColorPalette
-import androidx.ui.material.lightColorPalette
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
+import androidx.compose.runtime.Composable
 
-private val DarkColorPalette = darkColorPalette(
+private val DarkColors = darkColors(
         primary = colorSecondary,
         primaryVariant = colorSecondaryLight,
         secondary = colorPrimaryDark,
@@ -14,7 +14,7 @@ private val DarkColorPalette = darkColorPalette(
         onSecondary = colorOnPrimary
 )
 
-private val LightColorPalette = lightColorPalette(
+private val LightColors = lightColors(
         primary = colorPrimary,
         primaryVariant = colorPrimaryDark,
         secondary = colorSecondary,
@@ -35,9 +35,9 @@ private val LightColorPalette = lightColorPalette(
 @Composable
 fun KakaoTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
     val colors = if (darkTheme) {
-        DarkColorPalette
+        DarkColors
     } else {
-        LightColorPalette
+        LightColors
     }
 
     MaterialTheme(

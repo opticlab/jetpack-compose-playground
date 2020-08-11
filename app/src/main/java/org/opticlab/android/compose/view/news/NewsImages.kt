@@ -1,12 +1,12 @@
 package org.opticlab.android.compose.view.news
 
-import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.layout.Row
-import androidx.ui.layout.Spacer
-import androidx.ui.layout.width
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
 import org.opticlab.android.compose.data.NewsFeed
 import org.opticlab.android.compose.data.sample.sampleImages
 import org.opticlab.android.compose.ui.KakaoTheme

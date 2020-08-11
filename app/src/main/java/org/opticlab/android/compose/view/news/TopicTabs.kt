@@ -1,15 +1,15 @@
 package org.opticlab.android.compose.view.news
 
-import androidx.compose.Composable
-import androidx.compose.emptyContent
-import androidx.compose.state
-import androidx.ui.core.Alignment
-import androidx.ui.core.Modifier
-import androidx.ui.layout.RowScope.gravity
-import androidx.ui.layout.preferredHeight
-import androidx.ui.material.TabRow
+import androidx.compose.foundation.layout.RowScope.gravity
+import androidx.compose.foundation.layout.preferredHeight
+import androidx.compose.material.TabRow
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.emptyContent
+import androidx.compose.runtime.state
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
 import org.opticlab.android.compose.data.Topic
 import org.opticlab.android.compose.data.sample.sampleTopics
 import org.opticlab.android.compose.ui.KakaoTheme

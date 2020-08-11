@@ -1,11 +1,11 @@
 package org.opticlab.android.compose.view.common
 
-import androidx.compose.Composable
-import androidx.ui.foundation.Text
-import androidx.ui.layout.RowScope
-import androidx.ui.material.TopAppBar
-import androidx.ui.material.icons.Icons
-import androidx.ui.material.icons.filled.Settings
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.runtime.Composable
 import androidx.ui.tooling.preview.Preview
 import org.opticlab.android.compose.ui.KakaoTheme
 

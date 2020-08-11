@@ -1,20 +1,20 @@
 package org.opticlab.android.compose.view.ad
 
-import androidx.compose.Composable
-import androidx.ui.core.Alignment
-import androidx.ui.core.Modifier
-import androidx.ui.core.WithConstraints
-import androidx.ui.foundation.*
-import androidx.ui.foundation.shape.corner.RoundedCornerShape
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.VerticalGradient
-import androidx.ui.layout.*
-import androidx.ui.material.Card
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.icons.Icons
-import androidx.ui.material.icons.filled.ThumbUp
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.WithConstraints
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.VerticalGradient
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
 import org.opticlab.android.compose.data.Ad
 import org.opticlab.android.compose.data.sample.sampleAd
 import org.opticlab.android.compose.ui.KakaoTheme
@@ -32,14 +32,14 @@ fun Advertisement(
             Image(
                 asset = Icons.Default.ThumbUp,
                 modifier = Modifier.fillMaxSize()
-                    .drawBackground(color = MaterialTheme.colors.primaryVariant)
+                    .background(color = MaterialTheme.colors.primaryVariant)
             )
             Text(
                 text = "AD",
                 style = MaterialTheme.typography.caption,
                 modifier = Modifier.gravity(Alignment.TopEnd)
                     .padding(16.dp)
-                    .drawBackground(
+                    .background(
                         MaterialTheme.colors.surface.copy(alpha = 0.2f),
                         shape = RoundedCornerShape(50)
                     )
@@ -51,7 +51,7 @@ fun Advertisement(
                     .fillMaxWidth()
             ) {
                 Row(
-                    modifier = Modifier.drawBackground(
+                    modifier = Modifier.background(
                         brush = VerticalGradient(
                             0f to Color.Transparent,
                             1f to Color.Black.copy(alpha = 0.5f),

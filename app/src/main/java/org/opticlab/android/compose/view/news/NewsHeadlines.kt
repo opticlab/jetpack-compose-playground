@@ -1,10 +1,10 @@
 package org.opticlab.android.compose.view.news
 
-import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.layout.Column
-import androidx.ui.layout.fillMaxWidth
-import androidx.ui.material.Divider
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.Divider
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.ui.tooling.preview.Preview
 import org.opticlab.android.compose.data.NewsFeed
 import org.opticlab.android.compose.data.sample.sampleHeadlines

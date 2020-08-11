@@ -1,15 +1,15 @@
 package org.opticlab.android.compose.view.chat
 
-import androidx.compose.Composable
-import androidx.ui.core.ContentScale
-import androidx.ui.core.Modifier
-import androidx.ui.core.clip
-import androidx.ui.foundation.Image
-import androidx.ui.foundation.drawBackground
-import androidx.ui.layout.aspectRatio
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.icons.Icons
-import androidx.ui.material.icons.filled.Person
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.ui.tooling.preview.Preview
 import org.opticlab.android.compose.data.Avatar
 import org.opticlab.android.compose.data.sample.sampleChats
@@ -22,7 +22,7 @@ fun ChatAvatar(avatar: Avatar, modifier: Modifier = Modifier) {
         asset = Icons.Default.Person,
         modifier = modifier
             .aspectRatio(1f)
-            .drawBackground(
+            .background(
                 color = MaterialTheme.colors.primaryVariant,
                 shape = SquircleShape()
             )

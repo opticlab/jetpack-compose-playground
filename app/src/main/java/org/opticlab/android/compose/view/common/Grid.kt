@@ -1,16 +1,16 @@
 package org.opticlab.android.compose.view.common
 
-import androidx.compose.Composable
-import androidx.ui.core.Layout
-import androidx.ui.core.Measurable
-import androidx.ui.core.Modifier
-import androidx.ui.core.Placeable
-import androidx.ui.layout.Constraints
-import androidx.ui.layout.DpConstraints
-import androidx.ui.layout.MainAxisAlignment
-import androidx.ui.layout.aspectRatio
-import androidx.ui.unit.IntOffset
-import androidx.ui.util.fastForEach
+import androidx.compose.foundation.layout.Constraints
+import androidx.compose.foundation.layout.DpConstraints
+import androidx.compose.foundation.layout.MainAxisAlignment
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Layout
+import androidx.compose.ui.Measurable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.Placeable
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.util.fastForEach
 import kotlin.math.min
 
 @Composable
@@ -27,7 +27,7 @@ fun <T> Grid(
                 .forEach { item -> itemContent(item) }
         },
         modifier = modifier.aspectRatio(1f),
-        measureBlock = { measurables, constraints, _ ->
+        measureBlock = { measurables, constraints ->
             val itemCount = measurables.size
             val size = constraints.maxWidth
 

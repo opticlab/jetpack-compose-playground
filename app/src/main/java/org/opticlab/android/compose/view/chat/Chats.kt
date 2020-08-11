@@ -1,13 +1,15 @@
 package org.opticlab.android.compose.view.chat
 
-import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.lazy.LazyColumnItems
-import androidx.ui.layout.Column
-import androidx.ui.material.icons.Icons
-import androidx.ui.material.icons.filled.Add
-import androidx.ui.material.icons.filled.Search
-import androidx.ui.material.icons.filled.Settings
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.InnerPadding
+import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import org.opticlab.android.compose.data.Chat
 import org.opticlab.android.compose.data.sample.sampleChats
@@ -33,7 +35,10 @@ fun Chats(
 
             }
         }
-        LazyColumnItems(items = chats) { chat ->
+        LazyColumnFor(
+            items = chats,
+            contentPadding = InnerPadding(top = 8.dp, bottom = 8.dp)
+        ) { chat ->
             ChatItem(
                 chat = chat,
                 onClick = onClickChat

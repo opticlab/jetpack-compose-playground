@@ -1,18 +1,20 @@
 package org.opticlab.android.compose.view.news
 
-import androidx.compose.Composable
-import androidx.compose.state
-import androidx.ui.core.Alignment
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.lazy.LazyColumnItems
-import androidx.ui.layout.*
+import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.state
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.UriHandlerAmbient
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
 import org.opticlab.android.compose.data.NewsFeed
 import org.opticlab.android.compose.data.Topic
 import org.opticlab.android.compose.data.sample.sampleTopics
 import org.opticlab.android.compose.exhaust
 import org.opticlab.android.compose.ui.KakaoTheme
+import org.opticlab.android.compose.view.AnalyticsAmbient
 import org.opticlab.android.compose.view.ad.Advertisement
 
 @Composable
@@ -20,23 +22,21 @@ fun News(
     topics: List<Topic>,
     modifier: Modifier = Modifier
 ) {
-    Stack(modifier = modifier) {
+    Column(modifier = modifier.animateContentSize()) {
         val (selected, onSelect) = state { topics.first() }
 
-        Column {
-            TopicTabs(topics, selected, onSelect)
+        TopicTabs(topics, selected, onSelect)
 
-            LazyColumnItems(
-                items = selected.feeds,
-                modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
-                    .weight(1f)
-            ) { feed ->
-                if (selected.feeds.firstOrNull() != feed) {
-                    Spacer(modifier = Modifier.height(8.dp))
-                }
-
-                NewsItem(feed, Modifier.padding(start = 16.dp, end = 16.dp))
+        LazyColumnFor(
+            items = selected.feeds,
+            contentPadding = InnerPadding(top = 8.dp, bottom = 8.dp),
+            modifier = Modifier.weight(1f)
+        ) { feed ->
+            if (selected.feeds.firstOrNull() != feed) {
+                Spacer(modifier = Modifier.height(8.dp))
             }
+
+            NewsItem(feed, Modifier.padding(start = 16.dp, end = 16.dp))
         }
 
         SearchBar(
@@ -46,7 +46,6 @@ fun News(
             },
             modifier = Modifier.fillMaxWidth()
                 .wrapContentHeight()
-                .gravity(Alignment.BottomCenter)
         )
     }
 }
@@ -69,11 +68,17 @@ private fun NewsItem(
             weather = feed,
             modifier = modifier
         )
-        is NewsFeed.Ad -> Advertisement(
-            ad = feed.ad,
-            modifier = modifier
-        ) {
+        is NewsFeed.Ad -> {
+            val analytics = AnalyticsAmbient.current
+            val uriHandler = UriHandlerAmbient.current
 
+            Advertisement(
+                ad = feed.ad,
+                modifier = modifier
+            ) {
+                uriHandler.openUri(feed.ad.url)
+                analytics.event("News AD", "uri" to feed.ad.url)
+            }
         }
     }.exhaust()
 }

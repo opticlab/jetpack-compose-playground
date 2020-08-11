@@ -2,9 +2,11 @@ package org.opticlab.android.compose
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.Composable
-import androidx.ui.core.setContent
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.setContent
 import androidx.ui.tooling.preview.Preview
+import androidx.ui.tooling.preview.PreviewParameter
+import androidx.ui.tooling.preview.PreviewParameterProvider
 import org.opticlab.android.compose.data.sample.sampleAd
 import org.opticlab.android.compose.data.sample.sampleChats
 import org.opticlab.android.compose.data.sample.sampleContacts
@@ -23,18 +25,14 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-@Preview(showBackground = true, name = "Light theme")
-@Composable
-fun LightPreview() {
-    KakaoTheme(darkTheme = false) {
-        Home(sampleContacts, sampleChats, sampleTopics, sampleAd)
-    }
+class ThemeParameterProvider: PreviewParameterProvider<Boolean> {
+    override val values: Sequence<Boolean> = sequenceOf(false, true)
 }
 
-@Preview(showBackground = true, name = "Dark theme")
+@Preview(showDecoration = true, showBackground = true, group = "Theme")
 @Composable
-fun DarkPreview() {
-    KakaoTheme(darkTheme = true) {
+fun Preview(@PreviewParameter(ThemeParameterProvider::class) darkTheme: Boolean) {
+    KakaoTheme(darkTheme = darkTheme) {
         Home(sampleContacts, sampleChats, sampleTopics, sampleAd)
     }
 }
