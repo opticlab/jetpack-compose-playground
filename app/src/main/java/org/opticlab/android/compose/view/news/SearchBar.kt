@@ -1,5 +1,6 @@
 package org.opticlab.android.compose.view.news
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -30,7 +31,10 @@ fun SearchBar(
         modifier = modifier,
         elevation = 4.dp
     ) {
-        Column(modifier = Modifier.padding(horizontal = 16.dp,vertical = 8.dp)) {
+        Column(
+            modifier = Modifier.padding(horizontal = 16.dp,vertical = 8.dp)
+                .animateContentSize()
+        ) {
             val (textValue, onTextValueChange) = state { TextFieldValue() }
 
             SearchInput(textValue, onTextValueChange, onSearch)

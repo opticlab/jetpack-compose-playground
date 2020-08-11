@@ -1,8 +1,7 @@
 package org.opticlab.android.compose.view.news
 
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumnForIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.state
 import androidx.compose.ui.Modifier
@@ -22,17 +21,17 @@ fun News(
     topics: List<Topic>,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier.animateContentSize()) {
+    Column(modifier = modifier) {
         val (selected, onSelect) = state { topics.first() }
 
         TopicTabs(topics, selected, onSelect)
 
-        LazyColumnFor(
+        LazyColumnForIndexed(
             items = selected.feeds,
             contentPadding = InnerPadding(top = 8.dp, bottom = 8.dp),
             modifier = Modifier.weight(1f)
-        ) { feed ->
-            if (selected.feeds.firstOrNull() != feed) {
+        ) { index, feed ->
+            if (index > 0) {
                 Spacer(modifier = Modifier.height(8.dp))
             }
 
