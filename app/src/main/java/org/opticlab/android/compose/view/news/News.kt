@@ -19,7 +19,8 @@ import org.opticlab.android.compose.view.ad.Advertisement
 @Composable
 fun News(
     topics: List<Topic>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onAddSearchTopic: (String) -> Unit
 ) {
     Column(modifier = modifier) {
         val (selected, onSelect) = state { topics.first() }
@@ -40,9 +41,7 @@ fun News(
 
         SearchBar(
             recommendedTags = selected.recommendedTags,
-            onSearch = {
-                // TODO add a new keyword search tab
-            },
+            onSearch = onAddSearchTopic,
             modifier = Modifier.fillMaxWidth()
                 .wrapContentHeight()
         )
@@ -86,6 +85,6 @@ private fun NewsItem(
 @Composable
 private fun Preview() {
     KakaoTheme {
-        News(sampleTopics)
+        News(sampleTopics) {}
     }
 }

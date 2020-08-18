@@ -2,37 +2,33 @@ package org.opticlab.android.compose
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Providers
 import androidx.compose.ui.platform.setContent
-import androidx.ui.tooling.preview.Preview
-import androidx.ui.tooling.preview.PreviewParameter
-import androidx.ui.tooling.preview.PreviewParameterProvider
-import org.opticlab.android.compose.data.sample.sampleAd
-import org.opticlab.android.compose.data.sample.sampleChats
-import org.opticlab.android.compose.data.sample.sampleContacts
-import org.opticlab.android.compose.data.sample.sampleTopics
+import com.github.zsoltk.compose.backpress.AmbientBackPressHandler
+import com.github.zsoltk.compose.backpress.BackPressHandler
 import org.opticlab.android.compose.ui.KakaoTheme
 import org.opticlab.android.compose.view.home.Home
+import org.opticlab.android.compose.view.home.tabs
 
 class MainActivity : AppCompatActivity() {
+    private val backPressHandler = BackPressHandler()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            KakaoTheme {
-                Home(sampleContacts, sampleChats, sampleTopics, sampleAd)
+            Providers(
+                AmbientBackPressHandler provides backPressHandler
+            ) {
+                KakaoTheme {
+                    Home(tabs, tabs.first())
+                }
             }
         }
     }
-}
 
-class ThemeParameterProvider: PreviewParameterProvider<Boolean> {
-    override val values: Sequence<Boolean> = sequenceOf(false, true)
-}
-
-@Preview(showDecoration = true, showBackground = true, group = "Theme")
-@Composable
-fun Preview(@PreviewParameter(ThemeParameterProvider::class) darkTheme: Boolean) {
-    KakaoTheme(darkTheme = darkTheme) {
-        Home(sampleContacts, sampleChats, sampleTopics, sampleAd)
+    override fun onBackPressed() {
+        if (backPressHandler.handle().not()) {
+            super.onBackPressed()
+        }
     }
 }

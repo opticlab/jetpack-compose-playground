@@ -19,18 +19,10 @@ fun Tag(tag: String, onClickTag: (String) -> Unit) {
         text = "#$tag",
         modifier = Modifier.background(
             color = MaterialTheme.colors.secondaryVariant,
-            shape = RoundedCornerShape(
-                50
-            )
+            shape = RoundedCornerShape(50)
         )
-            .clickable(
-                onClick = { onClickTag(tag) }
-            )
-            .clip(
-                RoundedCornerShape(
-                    50
-                )
-            )
+            .clip(RoundedCornerShape(50))
+            .clickable(onClick = { onClickTag(tag) })
             .padding(horizontal = 8.dp, vertical = 4.dp),
         fontSize = MaterialTheme.typography.caption.fontSize,
         color = MaterialTheme.colors.onSecondary

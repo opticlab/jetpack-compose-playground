@@ -12,6 +12,7 @@ import org.opticlab.android.compose.ui.KakaoTheme
 
 @Composable
 fun TalkTabs(
+    tabs: List<Tab>,
     selected: Tab,
     onTabSelected: (Tab) -> Unit
 ) {
@@ -19,7 +20,7 @@ fun TalkTabs(
         cutoutShape = CircleShape
     ) {
         BottomNavigation {
-            Tab.values().forEach { tab ->
+            tabs.forEach { tab ->
                 BottomNavigationItem(
                     icon = { Icon(asset = vectorResource(id = tab.icon)) },
                     selected = selected == tab,
@@ -34,6 +35,6 @@ fun TalkTabs(
 @Composable
 private fun Preview() {
     KakaoTheme {
-        TalkTabs(selected = Tab.CHAT, onTabSelected = {})
+        TalkTabs(tabs = tabs, selected = tabs.first(), onTabSelected = {})
     }
 }

@@ -10,7 +10,6 @@ import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.WithConstraints
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.VerticalGradient
 import androidx.compose.ui.unit.dp
@@ -46,24 +45,23 @@ fun Advertisement(
                     .drawBorder(1.dp, MaterialTheme.colors.onSurface, RoundedCornerShape(50))
                     .padding(horizontal = 4.dp, vertical = 2.dp)
             )
-            WithConstraints(
-                modifier = Modifier.gravity(Alignment.BottomCenter)
+            Row(
+                modifier = Modifier
+                    .gravity(Alignment.BottomCenter)
+                    .preferredHeight(56.dp)
                     .fillMaxWidth()
-            ) {
-                Row(
-                    modifier = Modifier.background(
+                    .background(
                         brush = VerticalGradient(
                             0f to Color.Transparent,
-                            1f to Color.Black.copy(alpha = 0.5f),
+                            1f to MaterialTheme.colors.surface.copy(alpha = 0.5f),
                             startY = 0f,
-                            endY = maxHeight.value
+                            endY = 100f
                         )
                     )
-                        .padding(16.dp)
-                ) {
-                    Text(text = ad.title, modifier = Modifier.weight(1f))
-                    Text(text = "이동하기")
-                }
+                    .padding(16.dp)
+            ) {
+                Text(text = ad.title, modifier = Modifier.weight(1f))
+                Text(text = "이동하기")
             }
         }
     }
